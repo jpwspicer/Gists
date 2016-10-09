@@ -78,7 +78,7 @@ Click here for how to change the fixed-width fonts in your browsers, shells, and
 
 ### 2. Enable auto-completions<a name="autoCompletions"></a>
 
-To be useful, typing unicode characters must be as straightforward as tpying alphanumeric characters, otherwise no-one will bother. Auto-completion programs ensure that typing `nddot` automatically corrects to `n̈`.
+Typing unicode characters must become as straightforward as tpying alphanumeric characters otherwise no-one will bother. Auto-completions automatically correct typing `nddot` to `n̈`.
 
 Implementations vary depending on program and operating system, but I've collected a few ideas here.
 
