@@ -1,0 +1,10 @@
+
+
+	ξ = v²/2 - μ/r₀
+	ḟ = √μ*χ*(ψ*c₃-1)/(r*r₀)
+	h⃗ = ḟ*r⃗₀ × ġ*v⃗₀
+
+
+	xi = v^2*0.5 - mu/r0
+	fdot = sqrt(mu)*chi*(psi*c3-1.0)/(r*r0)
+	hvec = cross(fdot*rvec0, gdot*vvec0)
