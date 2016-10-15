@@ -70,19 +70,19 @@ To be user-friendly and legible, two things need to happen:
 
 ### 1. Enable Unicode fonts<a name="enableFonts"></a>
 
-If `♃ᵦ ω̃ ξ⃗ n̈₀ ∛Δ̇‴` shows up as `⍰⍰⍰⍰`, your browser does not know how to handle the necessary Unicode characters.
+If `♃ᵦ ω̃ ξ⃗ n̈₀ ∛Δ̇‴` shows up as `⍰⍰⍰⍰`, your browser cannot handle the necessary Unicode characters.
 
-It's no good typing beautiful scripts if you can't read them. All interfaces through which you view and edit code must use unicode-enabled fonts.
+It's no good typing beautiful scripts if you can't read them. All interfaces on which you view and edit code must use a unicode-enabled font.
 
-Click here for how to change the fixed-width fonts in your browsers, shells, and text editors.
+First, pick a unicode-enabled, fixed-width font (I've listed a few <a href="#fontComparisons">here</a>). Then change the default font in your browsers, shells, and text editors (instructions <a href="#changeFonts">here</a>).
 
 ### 2. Enable auto-completions<a name="autoCompletions"></a>
 
 Typing unicode characters must become as straightforward as tpying alphanumeric characters otherwise no-one will bother. Auto-completions automatically correct typing `nddot` to `n̈`.
 
-Implementations vary depending on program and operating system, but I've collected a few ideas here.
+Implementations vary depending on program and operating system, but I've collected a few ideas <a href="#autoCompletionImplementation">here</a>.
 
-That's it! By changing system fonts and using auto-completions, your scripts can be more user-friendly and efficient than ever before.
+**That's it! By changing system fonts and using auto-completions, your scripts can be more user-friendly and efficient than ever before.**
 
 ## Appendices<a name="appendices"></a>
 
@@ -90,22 +90,35 @@ That's it! By changing system fonts and using auto-completions, your scripts can
 
 ### 2. Change default fixed-width fonts<a name="changeFonts"></a>
 
-a. Browsers<a name="browsers"></a>
-  i. Chrome<a name="chrome"></a>
-  ii. Firefox<a name="firefox"></a>
-  iii. Safari<a name="safari"></a>
-b. Shell<a name="shell"></a>
-  i. OSX Terminal<a name="osx"></a>
-  ii. Windows Command Prompt<a name="windows"></a>
-  iii. Linux shell<a name="linux"></a>
+<ol type="a">
+	<li><a name="browsers">Browsers</a></li>
+		<ol type="i">
+			<li><a name="chrome">Chrome</a></li>
+				'⋮'' -> 'Settings' -> 'Show advanced settings' -> 'Customize fonts' -> Change the default 'fixed-width font' setting.
+			<li><a name="firefox">Firefox</a></li>
+			<li><a name="safari">Safari</a></li>
+		</ol>
+	<li><a name="shell">Shells</a></li>
+		<ol type="i">
+			<li><a name="osx">OSX Terminal</a></li>
+			<li><a name="windows">Windows Command Prompt</a></li>
+			<li><a name="linux">Linux Shell</a></li>
+		</ol>
+</ol>
 
 ### 3. Auto-completion implementations<a name="autoCompletionImplementation"></a>
 
-a. Operating systems<a name="os"></a>
-  i. Windows (system-wide)<a name="windowsImp"></a>
-  ii. OSX (system-wide)<a name="osxImp"></a>
-b. Common text editors<a name="textEditors"></a>
-  i. Sublime Text<a name="sublime"></a>
-  ii. Notepad++<a name="notepad"></a>
-  iii. Vim<a name="vim"></a>
-  iv. Emacs<a name="emacs"></a>
+<ol type="a">
+	<li><a name="os">Operating System-Wide</a></li>
+		<ol type="i">
+			<li><a name="osxImp">OSX</a></li>
+			<li><a name="windowsImp">Windows</a></li>
+		</ol>
+	<li><a name="textEditors">Text Editors</a></li>
+		<ol type="i">
+			<li><a name="sublime">Sublime Text</a></li>
+			<li><a name="notepad">Notepad++</a></li>
+			<li><a name="vim">Vim</a></li>
+			<li><a name="emacs">Emacs</a></li>
+		</ol>
+</ol>
