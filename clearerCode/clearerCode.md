@@ -21,6 +21,7 @@ An increasing number of computer lanuages are making use of unicode symbols, off
 						<li><a href="#chrome">Chrome</a></li>
 						<li><a href="#firefox">Firefox</a></li>
 						<li><a href="#safari">Safari</a></li>
+						<li><a href="#ie">Internet Explorer</a></li>
 					</ol>
 				<li><a href="#shell">Shells</a></li>
 					<ol type="i">
@@ -91,34 +92,44 @@ Implementations vary depending on program and operating system, but I've collect
 ### 2. Change default fixed-width fonts<a name="changeFonts"></a>
 
 <ol type="a">
-	<li><a name="browsers">Browsers</a></li>
+	<li><a name="browsers"><b>Browsers</b></a></li>
 		<ol type="i">
-			<li><a name="chrome">Chrome</a></li>
-				'⋮'' -> 'Settings' -> 'Show advanced settings' -> 'Customize fonts' -> Change the default 'fixed-width font' setting.
-			<li><a name="firefox">Firefox</a></li>
-			<li><a name="safari">Safari</a></li>
+		Most browsers will need to be restarted before the changes below will take effect.
+			<li><a name="chrome"><b>Chrome</b></a></li>
+				'⋮' → 'Settings' → 'Show advanced settings' → 'Customize fonts' → Change the default 'fixed-width font' setting.
+			<li><a name="firefox"><b>Firefox</b></a></li>
+				'≡' → 'Options' → 'Content' → 'Advanced' → Change the default 'Monospace' setting.
+			<li><a name="safari"><b>Safari</b></a></li>
+				Save <a href="https://raw.githubusercontent.com/jpwspicer/Gists/master/clearerCode/fixedWidthStyle.css">this</a> file. Open it in a text editor and change 'Consolas' to the name of your desired fixed-width font, and save the changes. In Safari, go to 'Safari' → 'Preferences' → 'Advanced' → 'Style Sheet' → 'Other' → Select the .css file you just downloaded and altered.
+			<li><a name="ie"><b>Internet Explorer</b></a></li>
+				'⚙' → 'Internet Options' → 'General' → 'Fonts' → Change the default 'Plain text font' setting.
 		</ol>
-	<li><a name="shell">Shells</a></li>
+	<li><a name="shell"><b>Shells</b></a></li>
 		<ol type="i">
-			<li><a name="osx">OSX Terminal</a></li>
-			<li><a name="windows">Windows Command Prompt</a></li>
-			<li><a name="linux">Linux Shell</a></li>
+			<li><a name="osx"><b>OSX Terminal</b></a></li>
+				'Terminal' → 'Preferences' → 'Profiles' → 'Font' → 'Change' → Change default 'family' setting.
+			<li><a name="windows"><b>Windows Command Prompt</b></a></li>
+				Right-click on taskbar → 'Properties' → 'Font' → Change the default font setting. If the font you've installed is not visible, follow the instructions on <a href="http://www.howtogeek.com/howto/windows-vista/stupid-geek-tricks-enable-more-fonts-for-the-windows-command-prompt/">this</a> page.
+			<li><a name="linux"><b>Linux Shell</b></a></li>
+				Same process as for Safari.
 		</ol>
 </ol>
 
 ### 3. Auto-completion implementations<a name="autoCompletionImplementation"></a>
 
 <ol type="a">
-	<li><a name="os">Operating System-Wide</a></li>
+	<li><a name="os"><b>Operating Systems</b></a></li>
 		<ol type="i">
-			<li><a name="osxImp">OSX</a></li>
-			<li><a name="windowsImp">Windows</a></li>
+			<li><a name="osxImp"><b>OSX</b></a></li>
+			<li><a name="windowsImp"><b>Windows</b></a></li>
+			Download <a href="https://autohotkey.com/">AutoHotkey</a>. Open command prompt and run <code>shell:startup</code> to open your startup folder. Download this autocomplete file and move it into your startup folder. Double-click it to start it running right now.
 		</ol>
-	<li><a name="textEditors">Text Editors</a></li>
+	<li><a name="textEditors"><b>Text Editors</b></a></li>
 		<ol type="i">
-			<li><a name="sublime">Sublime Text</a></li>
-			<li><a name="notepad">Notepad++</a></li>
-			<li><a name="vim">Vim</a></li>
-			<li><a name="emacs">Emacs</a></li>
+			<li><a name="sublime"><b>Sublime Text</b></a></li>
+				Download and install <a href="https://github.com/jpwspicer/sublime-astro-symbols">this</a> package. Instructions on page.
+			<li><a name="notepad"><b>Notepad++</b></a></li>
+			<li><a name="vim"><b>Vim</b></a></li>
+			<li><a name="emacs"><b>Emacs</b></a></li>
 		</ol>
 </ol>
