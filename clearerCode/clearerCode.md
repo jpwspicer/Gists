@@ -125,7 +125,7 @@ Test letters:
 4. Consolas
    * Windows
 
-   <img src="https://raw.githubusercontent.com/jpwspicer/Gists/master/clearerCode/WindowsFonts/Consolas.PNG" alt="Consolas Windows" width="250">
+   <img src="https://raw.githubusercontent.com/jpwspicer/Gists/master/clearerCode/WindowsFonts/Consolas.png" alt="Consolas Windows" width="250">
 
    * OSX
 
