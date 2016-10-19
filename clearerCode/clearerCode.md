@@ -96,6 +96,7 @@ Test letters:
 1. FreeMono
    * Windows
 
+   <img src="https://raw.githubusercontent.com/jpwspicer/Gists/master/clearerCode/WindowsFonts/FreeMono.png" alt="FreeMono Windows" width="250">
 
    * OSX
 
@@ -105,6 +106,7 @@ Test letters:
 2. Courier
    * Windows
 
+   <img src="https://raw.githubusercontent.com/jpwspicer/Gists/master/clearerCode/WindowsFonts/Courier.png" alt="Courier Windows" width="250">
 
    * OSX
 
@@ -114,6 +116,8 @@ Test letters:
 3. Courier New
    * Windows
 
+   <img src="https://raw.githubusercontent.com/jpwspicer/Gists/master/clearerCode/WindowsFonts/CourierNew.png" alt="Courier New Windows" width="250">
+
 
    * OSX
 
@@ -121,6 +125,7 @@ Test letters:
 4. Consolas
    * Windows
 
+   <img src="https://raw.githubusercontent.com/jpwspicer/Gists/master/clearerCode/WindowsFonts/Consolas.png" alt="Consolas Windows" width="250">
 
    * OSX
 
