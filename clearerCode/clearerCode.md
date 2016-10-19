@@ -122,7 +122,7 @@ Implementations vary depending on program and operating system, but I've collect
 		<ol type="i">
 			<li><a name="osxImp"><b>OSX</b></a></li>
 			<li><a name="windowsImp"><b>Windows</b></a></li>
-			Download <a href="https://autohotkey.com/">AutoHotkey</a>. Open command prompt and run <code>shell:startup</code> to open your startup folder. Download this autocomplete file and move it into your startup folder. Double-click it to start it running right now.
+			Download <a href="https://autohotkey.com/">AutoHotkey</a>. Open command prompt and run <code>shell:startup</code> to open your startup folder. Save <a href="https://raw.githubusercontent.com/jpwspicer/Gists/master/clearerCode/AstroSymbols.ahk">this</a> autocomplete file to your startup folder. Double-click it to start it running right now.
 		</ol>
 	<li><a name="textEditors"><b>Text Editors</b></a></li>
 		<ol type="i">
