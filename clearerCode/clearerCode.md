@@ -89,6 +89,30 @@ Implementations vary depending on program and operating system, but I've collect
 
 ### 1. Fixed-width font comparisons<a name="fontComparisons"></a>
 
+Test letters:
+
+<img src="https://raw.githubusercontent.com/jpwspicer/Gists/master/clearerCode/TestLetters.png" alt="Test Letters" width="275">
+
+1. FreeMono
+   * Windows
+
+
+   * OSX
+
+
+2. Courier
+
+
+3. Courier New
+
+
+4. Consolas
+
+
+
+
+
+
 ### 2. Change default fixed-width fonts<a name="changeFonts"></a>
 
 <ol type="a">
