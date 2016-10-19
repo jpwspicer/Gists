@@ -99,14 +99,30 @@ Test letters:
 
    * OSX
 
+   <img src="https://raw.githubusercontent.com/jpwspicer/Gists/master/clearerCode/MacFonts/FreeMono.png" alt="FreeMono Mac" width="250">
+
 
 2. Courier
+   * Windows
+
+
+   * OSX
+
+   <img src="https://raw.githubusercontent.com/jpwspicer/Gists/master/clearerCode/MacFonts/Courier.png" alt="Courier Mac" width="250">
 
 
 3. Courier New
+   * Windows
+
+
+   * OSX
 
 
 4. Consolas
+   * Windows
+
+
+   * OSX
 
 
 
