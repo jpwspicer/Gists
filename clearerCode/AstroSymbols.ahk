@@ -10,7 +10,8 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ::;beta::β
 ::;gamma::γ
 ::;delta::δ
-::;epsilon::ε
+::;epsilon::ϵ
+::;varepsilon::ε
 ::;zeta::ζ
 ::;eta::η
 ::;theta::θ
@@ -120,7 +121,8 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ::;betavec::β⃗
 ::;gammavec::γ⃗
 ::;deltavec::δ⃗
-::;epsilonvec::ε⃗
+::;epsilonvec::ϵ⃗
+::;varepsilonvec::ε⃗
 ::;zetavec::ζ⃗
 ::;etavec::η⃗
 ::;thetavec::θ⃗
@@ -230,7 +232,8 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ::;betadot::β̇
 ::;gammadot::γ̇
 ::;deltadot::δ̇
-::;epsilondot::ε̇
+::;epsilondot::ϵ̇
+::;varepsilondot::ε̇
 ::;zetadot::ζ̇
 ::;etadot::η̇
 ::;thetadot::θ̇
@@ -340,7 +343,8 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ::;betaddot::β̈
 ::;gammaddot::γ̈
 ::;deltaddot::δ̈
-::;epsilonddot::ε̈
+::;epsilonddot::ϵ̈
+::;varepsilonddot::ε̈
 ::;zetaddot::ζ̈
 ::;etaddot::η̈
 ::;thetaddot::θ̈
@@ -534,8 +538,8 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ::;neptune::♆
 ::;pluto::♇
 
-
-::;epsilonbar::ε̄
+::;epsilonbar::ϵ̄
+::;varepsilonbar::ε̄
 ::;omegatilde::ω̃
 
 
