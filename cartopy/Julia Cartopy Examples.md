@@ -1,5 +1,5 @@
 ## Julia Cartopy Examples
-Last Update: 01.02.2016<br>
+Last Update: 02.05.2017<br>
 
 ##### Contents
 
@@ -65,7 +65,7 @@ As you can see, Julia simply replaces the `.` syntax with `[:]` syntax.
 	title("Global Map with Points & Lines")
 ```
 
-![Global Map](https://raw.githubusercontent.com/jpwspicer/Julia/master/cartopy/01globalMap.png "Global Map")
+![Global Map](https://github.com/jpwspicer/Gists/raw/master/cartopy/01globalMap.png "Global Map")
 
 --
 
