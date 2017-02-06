@@ -65,7 +65,7 @@ As you can see, Julia simply replaces the `.` syntax with `[:]` syntax.
 	title("Global Map with Points & Lines")
 ```
 
-![Global Map](https://github.com/jpwspicer/Gists/raw/master/cartopy/01globalMap.png "Global Map")
+![Global Map](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/01globalMap.png "Global Map")
 
 --
 
@@ -93,7 +93,7 @@ As you can see, Julia simply replaces the `.` syntax with `[:]` syntax.
 	title("Eccentric Ellipse")
 ```
 
-![Eccentric Ellipse](https://raw.githubusercontent.com/jpwspicer/Julia/master/cartopy/02eccentricEllipseExample.png "Eccentric Ellipse")
+![Eccentric Ellipse](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/02eccentricEllipseExample.png "Eccentric Ellipse")
 
 --
 
@@ -123,7 +123,7 @@ As you can see, Julia simply replaces the `.` syntax with `[:]` syntax.
 	title("Europe at Night April/October 2012")
 ```
 
-![Earth at Night](https://raw.githubusercontent.com/jpwspicer/Julia/master/cartopy/03wmtsEarthAtNight.png "Earth at Night")
+![Earth at Night](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/03wmtsEarthAtNight.png "Earth at Night")
 
 --
 
@@ -152,7 +152,7 @@ As you can see, Julia simply replaces the `.` syntax with `[:]` syntax.
 	ax[:add_feature](states_provinces, edgecolor="gray")
 ```
 
-![Feature Creation](https://raw.githubusercontent.com/jpwspicer/Julia/master/cartopy/04featureCreationExample.png "Feature Creation")
+![Feature Creation](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/04featureCreationExample.png "Feature Creation")
 
 --
 
@@ -204,7 +204,7 @@ As you can see, Julia simply replaces the `.` syntax with `[:]` syntax.
 	           bbox=Dict("facecolor"=>"wheat", "alpha"=>0.5, "boxstyle"=>"round"))
 ```
 
-![MapTileAcquisition](https://raw.githubusercontent.com/jpwspicer/Julia/master/cartopy/05mapTileAcquisitionExample.png "MapTileAcquisition")
+![MapTileAcquisition](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/05mapTileAcquisitionExample.png "MapTileAcquisition")
 
 --
 
@@ -227,6 +227,6 @@ As you can see, Julia simply replaces the `.` syntax with `[:]` syntax.
 	ax[:set_extent]([-20, 60, -40, 40])
 ```
 
-![Features](https://raw.githubusercontent.com/jpwspicer/Julia/master/cartopy/06featuresExample.png "Features")
+![Features](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/06featuresExample.png "Features")
 
 --
