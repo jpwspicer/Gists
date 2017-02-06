@@ -86,7 +86,7 @@ Python → Julia
 	title("Global Contour Lines")
 ```
 
-![Contour](https://raw.githubusercontent.com/jpwspicer/Julia/master/basemap/01contourExample.png "Contour")
+![Contour](https://github.com/jpwspicer/Gists/raw/master/basemap/01contourExample.png "Contour")
 
 --
 
@@ -127,7 +127,7 @@ Python → Julia
 	title("Great Circle from New York to London")
 ```
 
-![Great Circle](https://raw.githubusercontent.com/jpwspicer/Julia/master/basemap/02greatCircleExample.png "Great Circle")
+![Great Circle](https://github.com/jpwspicer/Gists/raw/master/basemap/02greatCircleExample.png "Great Circle")
 
 --
 
@@ -153,4 +153,4 @@ Python → Julia
 	title("Day/Night Map for " * strftime(time()) * " (UTC)")
 ```
 
-![Day / Night](https://raw.githubusercontent.com/jpwspicer/Julia/master/basemap/03dayNightExample.png "Day / Night")
+![Day / Night](https://github.com/jpwspicer/Gists/raw/master/basemap/03dayNightExample.png "Day / Night")
