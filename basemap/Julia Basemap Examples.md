@@ -51,39 +51,39 @@ Some Python functions are not replicated in Julia and must be either substitued 
 ##### Contours<a name="contours"></a>
 
 ```julia
-	using PyPlot, PyCall
-	basemap = pyimport("mpl_toolkits.basemap")
+using PyPlot, PyCall
+basemap = pyimport("mpl_toolkits.basemap")
 
-	# Set up orthographic map projection with perspective of satellite looking down at 45N, 100W.
-	# Use low resolution coastlines.
-	map = basemap.Basemap(projection="ortho", lat_0=45, lon_0=-100, resolution="l")
+# Set up orthographic map projection with perspective of satellite looking down at 45N, 100W.
+# Use low resolution coastlines.
+map = basemap.Basemap(projection="ortho", lat_0=45, lon_0=-100, resolution="l")
 
-	# Draw coastlines, country boundaries, fill continents.
-	map.drawcoastlines(linewidth=0.25)
-	map.drawcountries(linewidth=0.25)
-	map.fillcontinents(color="coral", lake_color="aqua")
+# Draw coastlines, country boundaries, fill continents.
+map.drawcoastlines(linewidth=0.25)
+map.drawcountries(linewidth=0.25)
+map.fillcontinents(color="coral", lake_color="aqua")
 
-	# Draw the edge of the map projection region (the projection limb)
-	map.drawmapboundary(fill_color="aqua")
+# Draw the edge of the map projection region (the projection limb)
+map.drawmapboundary(fill_color="aqua")
 
-	# Draw lat/lon grid lines every 30 degrees.
-	map.drawmeridians(collect(0:30:360))
-	map.drawparallels(collect(-90:30:90))
+# Draw lat/lon grid lines every 30 degrees.
+map.drawmeridians(collect(0:30:360))
+map.drawparallels(collect(-90:30:90))
 
-	# Make up some data on a regular lat/lon grid.
-	nLats = 73; nLons = 145; δ = 2π/(nLons-1)
-	lats = repeat(0.5π .- δ*[i for i = 1:nLats], 1, nLons)
-	lons = repeat(δ*[j for j = 1:nLons]', nLats)
+# Make up some data on a regular lat/lon grid.
+nLats = 73; nLons = 145; δ = 2π/(nLons-1)
+lats = repeat(0.5π .- δ*[i for i = 1:nLats], 1, nLons)
+lons = repeat(δ*[j for j = 1:nLons]', nLats)
 
-	wave = 0.75(sin.(2lats).^8).*cos.(4lons)
-	mean = 0.5cos.(2lats).*(sin.(2lats).^2 .+ 2)
+wave = 0.75(sin.(2lats).^8).*cos.(4lons)
+mean = 0.5cos.(2lats).*(sin.(2lats).^2 .+ 2)
 
-	# Compute native map projection coordinates of lat/lon grid.
-	x, y = map(rad2deg.(lons), rad2deg.(lats))
+# Compute native map projection coordinates of lat/lon grid.
+x, y = map(rad2deg.(lons), rad2deg.(lats))
 
-	# Contour data over the map.
-	cs = map.contour(x, y, wave+mean, 15, linewidths=1.5)
-	title("Global Contour Lines")
+# Contour data over the map.
+cs = map.contour(x, y, wave+mean, 15, linewidths=1.5)
+title("Global Contour Lines")
 ```
 
 ![Contour](https://raw.githubusercontent.com/jpwspicer/Gists/master/basemap/01contourExample.png "Contour")
@@ -93,38 +93,38 @@ Some Python functions are not replicated in Julia and must be either substitued 
 ##### Great Circles<a name="greatCircles"></a>
 
 ```julia
-	using PyPlot, PyCall
-	# basemap = pyimport("mpl_toolkits.basemap")
+using PyPlot, PyCall
+# basemap = pyimport("mpl_toolkits.basemap")
 
-	lightBlue = (220/255, 220/255, 255/255)
-	lightGreen = (230/255, 255/255, 230/255)
+lightBlue = (220/255, 220/255, 255/255)
+lightGreen = (230/255, 255/255, 230/255)
 
-	# Set up mercator map projection.
-	map = basemap.Basemap(llcrnrlon=-100, llcrnrlat=20, urcrnrlon=20, urcrnrlat=60,
-	            rsphere=(6378137.00, 6356752.3142),
-	            resolution="l", projection="merc",
-	            lat_0=40, lon_0=-20, lat_ts=20)
-	map.drawcoastlines(linewidth=0.5)
-	map.fillcontinents(color=lightGreen, lake_color=lightBlue)
-	map.drawcountries(linewidth=0.25)
-	map.drawmapboundary(fill_color=lightBlue)
+# Set up mercator map projection.
+map = basemap.Basemap(llcrnrlon=-100, llcrnrlat=20, urcrnrlon=20, urcrnrlat=60,
+            rsphere=(6378137.00, 6356752.3142),
+            resolution="l", projection="merc",
+            lat_0=40, lon_0=-20, lat_ts=20)
+map.drawcoastlines(linewidth=0.5)
+map.fillcontinents(color=lightGreen, lake_color=lightBlue)
+map.drawcountries(linewidth=0.25)
+map.drawmapboundary(fill_color=lightBlue)
 
-	# Draw parallels & meridians
-	map.drawmeridians(collect(-180:30:180), labels=[1,1,0,1])
-	map.drawparallels(collect(10:20:90), labels=[1,1,0,1])
+# Draw parallels & meridians
+map.drawmeridians(collect(-180:30:180), labels=[1,1,0,1])
+map.drawparallels(collect(10:20:90), labels=[1,1,0,1])
 
-	# Start, end coordinates (New York & London)
-	ny  = (40.78, -73.98)
-	lon = (51.53, 0.08)
+# Start, end coordinates (New York & London)
+ny  = (40.78, -73.98)
+lon = (51.53, 0.08)
 
-	# Draw great circle route between New York and London
-	map.drawgreatcircle(ny[2], ny[1], lon[2], lon[1], linewidth=3, color="m")
-	for (lat, lon) in [ny, lon]
-	    x, y = map(lon, lat)
-	    map.scatter(x, y, zorder=3, s=60, edgecolor="k", color="yellow")
-	end
+# Draw great circle route between New York and London
+map.drawgreatcircle(ny[2], ny[1], lon[2], lon[1], linewidth=3, color="m")
+for (lat, lon) in [ny, lon]
+    x, y = map(lon, lat)
+    map.scatter(x, y, zorder=3, s=60, edgecolor="k", color="yellow")
+end
 
-	title("Great Circle from New York to London")
+title("Great Circle from New York to London")
 ```
 
 ![Great Circle](https://raw.githubusercontent.com/jpwspicer/Gists/master/basemap/02greatCircleExample.png "Great Circle")
@@ -134,23 +134,23 @@ Some Python functions are not replicated in Julia and must be either substitued 
 ##### Day / Night<a name="dayNight"></a>
 
 ```julia
-	using PyPlot, PyCall, Dates
-	basemap = pyimport("mpl_toolkits.basemap")
+using PyPlot, PyCall, Dates
+basemap = pyimport("mpl_toolkits.basemap")
 
-	# Miller projection
-	map = basemap.Basemap(projection="mill", lon_0=180)
+# Miller projection
+map = basemap.Basemap(projection="mill", lon_0=180)
 
-	# Plot coastlines, draw label meridians and parallels
-	map.drawcoastlines(linewidth=0.5)
-	map.drawcountries(linewidth=0.25)
-	map.fillcontinents(color="coral", lake_color="aqua")
-	map.drawmeridians(collect(map.lonmin:60:map.lonmax+30), labels=[0,0,0,1])
-	map.drawparallels(collect(-90:30:90), labels=[1,0,0,0])
-	map.drawmapboundary(fill_color="aqua")
+# Plot coastlines, draw label meridians and parallels
+map.drawcoastlines(linewidth=0.5)
+map.drawcountries(linewidth=0.25)
+map.fillcontinents(color="coral", lake_color="aqua")
+map.drawmeridians(collect(map.lonmin:60:map.lonmax+30), labels=[0,0,0,1])
+map.drawparallels(collect(-90:30:90), labels=[1,0,0,0])
+map.drawmapboundary(fill_color="aqua")
 
-	# Shade the night areas using current time in UTC
-	CS = map.nightshade(now(Dates.UTC))
-	title("Day/Night Map for " * Libc.strftime(time()) * " (UTC)")
+# Shade the night areas using current time in UTC
+CS = map.nightshade(now(Dates.UTC))
+title("Day/Night Map for " * Libc.strftime(time()) * " (UTC)")
 ```
 
 ![Day / Night](https://raw.githubusercontent.com/jpwspicer/Gists/master/basemap/03dayNightExample.png "Day / Night")
