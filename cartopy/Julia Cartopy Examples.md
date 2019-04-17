@@ -16,17 +16,9 @@ Last Update: 02.05.2017<br>
 ### Cartopy
 #### Installation<a name="installation"></a>
 
-To install and begin using Cartopy, run the following commands in your computer's command line interface (Terminal on Mac, Command Prompt on Windows, etc.):
-```
-	conda install -c scitools cartopy
-```
-Then run the following commands in the Julia command line:
+1. In computer's command line (Terminal on Mac, Command Prompt on Windows): `conda install -c scitools cartopy`
+1. In the Julia command line: `using Conda;	Conda.add("Cartopy")`
 
-```julia
-	using Conda
-	push!(Conda.CHANNELS, "https://conda.anaconda.org/scitools")
-	Conda.add("Cartopy")
-```
  
 --
 
@@ -34,11 +26,8 @@ Then run the following commands in the Julia command line:
 
 When using Python modules (of which Cartopy is an example) in Julia rather than in Python, the syntax generally changes as follows:
 
-Python: `ax.stock_img()`
-
-Julia: `ax[:stock_img]()`
-
-As you can see, Julia simply replaces the `.` syntax with `[:]` syntax. 
+* Python & Julia 1.0: `ax.stock_img()`
+* Julia ≤0.7: `ax[:stock_img]()`
 
 
 #### Cartopy Examples
@@ -46,23 +35,25 @@ As you can see, Julia simply replaces the `.` syntax with `[:]` syntax.
 ##### Global Map with Points & Lines<a name="globalMap"></a>
 
 ```julia
-	using PyPlot, PyCall
-	@pyimport cartopy.crs as ccrs
+using PyPlot, PyCall
+ccrs = pyimport("cartopy.crs")
 
-	ax = axes(projection=ccrs.Robinson())
+ax = subplot(projection=ccrs.Robinson())
 
-	# make the map global rather than have it zoom in to the extents of any plotted data
-	ax[:set_global]()
+# make the map global rather than have it zoom in to the extents of any plotted data
+ax.set_global()
 
-	ax[:stock_img]()
-	ax[:coastlines]()
+ax.stock_img()
+ax.coastlines()
 
-	scatter(-0.08, 51.53, transform=ccrs.PlateCarree(), zorder=4, s=40, linewidth=1.5, edgecolor="k", color="yellow")
-	scatter(132, 43.17, transform=ccrs.PlateCarree(), zorder=4, s=80, linewidth=2, edgecolor="b", color="c")
-	scatter(-58.3817, -34.6033, transform=ccrs.PlateCarree(), zorder=4, s=60, linewidth=2, edgecolor="g", color="orange")
-	plot([-0.08, 132], [51.53, 43.17], transform=ccrs.PlateCarree(), linewidth=3, "r")
-	plot([-58.3817, 132], [-34.6033, 43.17], transform=ccrs.Geodetic(), linewidth=3, "m")
-	title("Global Map with Points & Lines")
+scatter(-0.08, 51.53, transform=ccrs.PlateCarree(), zorder=4, s=40, linewidth=1.5, edgecolor="k", color="yellow")
+scatter(132, 43.17, transform=ccrs.PlateCarree(), zorder=4, s=80, linewidth=2, edgecolor="b", color="c")
+scatter(-58.3817, -34.6033, transform=ccrs.PlateCarree(), zorder=4, s=60, linewidth=2, edgecolor="g", color="orange")
+
+plot([-0.08, 132], [51.53, 43.17], transform=ccrs.PlateCarree(), linewidth=3, "r")
+plot([-58.3817, 132], [-34.6033, 43.17], transform=ccrs.Geodetic(), linewidth=3, "m")
+
+title("Global Map with Points & Lines")
 ```
 
 ![Global Map](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/01globalMap.png "Global Map")

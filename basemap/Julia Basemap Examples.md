@@ -18,8 +18,8 @@ N.B. The Basemap library will be maintained until 2020, after which it will be r
 
 To install and begin using Basemap, run the following commands in the Julia command line:
 ```julia
-	using Conda
-	Conda.add("basemap")
+using Conda
+Conda.add("basemap")
 ```
  
 --
@@ -28,13 +28,9 @@ To install and begin using Basemap, run the following commands in the Julia comm
 
 When using Python modules (of which Basemap is an example) in Julia rather than in Python, the syntax generally changes as follows:
 
-Python - `map.fillcontinents(color='coral')`
-
-Julia 1.0 - `map.fillcontinents(color="coral")`
-
-Julia ≤0.7 - `map[:fillcontinents](color="coral")`
-
-As you can see, Julia simply replaces the '`.`' syntax with '`[:]`' syntax. 
+* Python: `map.fillcontinents(color='coral')`
+* Julia 1.0: `map.fillcontinents(color="coral")`
+* Julia ≤0.7: `map[:fillcontinents](color="coral")`
 
 Some Python functions are not replicated in Julia and must be either substitued or calculated by hand:
 
