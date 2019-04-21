@@ -9,7 +9,7 @@ Last Update: 04.20.2019 (update to Julia 1.0)<br>
 <li><a href="#imageOverlay">Image Overlay</a></li>
 <li><a href="#wmtsEarthAtNight">WMTS (Earth at Night)</a></li>
 <li><a href="#featureCreation">Feature Creation</a></li>
-<li><a href="#mapTileAcquisition">Map Tile Acquisition</a></li>
+<li><a href="#vectorPlotting">Vector Plotting</a></li>
 <li><a href="#features">Features</a></li>
 </ul>
 
@@ -152,54 +152,48 @@ ax.add_feature(states_provinces, edgecolor="gray")
 
 --
 
-##### Map Tile Acquisition<a name="mapTileAcquisition"></a>
+##### Vector Plotting<a name="vectorPlotting"></a>
+
+Cartopy comes with powerful vector field plotting functionality. There are 3 distinct options for visualising vector fields: `quiver`, `barb`, and `streamplot` each with their own benefits for displaying certain vector field forms.
 
 ```julia
-# Demonstrates cartopy's ability to draw map tiles which are downloaded on
-# demand from the MapQuest tile server. Internally these tiles are then combined
-# into a single image and displayed in the cartopy GeoAxes.
-
 using PyCall, PyPlot
+
 ccrs = pyimport("cartopy.crs")
-cimgt = pyimport("cartopy.io.img_tiles")
+feature = pyimport("cartopy.feature")
 
-# matplotlib = pyimport("matplotlib")
-# matplotlib.use("tkagg")
-# plt = pyimport("matplotlib.pyplot")
-# transforms = pyimport("matplotlib.transforms")
+"""
+Returns `(x, y, u, v, crs)` of some vector data
+computed mathematically. 
+"""
+function sample_data(shape=(20, 30))
+    x = range(311.9, stop=391.1, length=shape[2])
+    y = range(-23.6, stop=24.8, length=shape[1])
 
-# Target longitude/latitude coordinates (Eyjafjallajökull volcano).
-coords = [-19.613333, 63.62]
+    x2d, y2d = repeat(x', length(y), 1), repeat(y, 1, length(x))
+    u = 10(2cos.(2deg2rad.(x2d) .+ 3deg2rad.(y2d .+ 30)).^2)
+    v = 20cos.(6deg2rad.(x2d))
 
-# Create a MapQuest open aerial instance.
-map_quest_aerial = cimgt.MapQuestOpenAerial()
+    return x, y, u, v
+end
 
-# Create a GeoAxes in the tile's projection and limit its extent to a small lat/lon range.
-ax = subplot(projection=map_quest_aerial.crs)
-ax.set_extent([-22, -15, 63, 65])
+ax = subplot(projection=ccrs.Orthographic(-10, 45))
 
-# Add the MapQuest data at zoom level 8.
-ax.add_image(map_quest_aerial, 8)
+# The crs will be a rotated pole CRS, meaning that the vectors 
+# will be unevenly spaced in regular PlateCarree space.
+crs = ccrs.RotatedPole(pole_longitude=177.5, pole_latitude=37.5)
 
-# Add a marker at the target coordinates.
-plot(coords[1], coords[2], marker="o", color="yellow", markersize=12, 
-     alpha=0.7, transform=ccrs.Geodetic())
+ax.add_feature(feature.OCEAN, zorder=0)
+ax.add_feature(feature.LAND, zorder=0, edgecolor="k")
 
-# Use the cartopy interface to create a matplotlib transform object
-# for the Geodetic coordinate system. We will use this along with
-# matplotlib's offset_copy function to define a coordinate system which
-# translates the text by 25 pixels to the left.
-geodetic_transform = ccrs.Geodetic()._as_mpl_transform(ax)
-text_transform = matplotlib.transforms.offset_copy(geodetic_transform, units="dots", x=-25)
+ax.set_global()
+ax.gridlines()
 
-# Add text 25 pixels to the left of the target.
-text(coords[1], coords[2], "Eyjafjallajökull",
-     verticalalignment="center", horizontalalignment="right",
-     transform=text_transform,
-     bbox=Dict("facecolor"=>"wheat", "alpha"=>0.5, "boxstyle"=>"round"))
+x, y, u, v = sample_data()
+ax.quiver(collect(x), collect(y), u, v, transform=crs)
 ```
 
-![MapTileAcquisition](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/05mapTileAcquisitionExample.png "MapTileAcquisition")
+![Vector Plotting](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/05vectorPlottingExample.png "VectorPlotting")
 
 --
 
