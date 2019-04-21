@@ -16,7 +16,7 @@ Last Update: 04.20.2019 (update to Julia 1.0)<br>
 ### Cartopy
 #### Installation<a name="installation"></a>
 
-1. In computer's command line (Terminal on Mac, Command Prompt on Windows): `conda install -c scitools cartopy`
+1. In computer's command line (Terminal on Mac, Command Prompt on Windows): `conda install -c conda-forge cartopy`
 1. In the Julia command line: `using Conda;	Conda.add("Cartopy")`
 
  
