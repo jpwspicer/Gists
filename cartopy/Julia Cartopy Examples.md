@@ -1,12 +1,12 @@
 ## Julia Cartopy Examples
-Last Update: 04.17.2019 (update to Julia 1.0)<br>
+Last Update: 04.20.2019 (update to Julia 1.0)<br>
 
 ##### Contents
 
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#globalMap">Global Map with Points & Lines</a></li>
-<li><a href="#eccentricEllipse">Eccentric Ellipsoid</a></li>
+<li><a href="#imageOverlay">Image Overlay</a></li>
 <li><a href="#wmtsEarthAtNight">WMTS (Earth at Night)</a></li>
 <li><a href="#featureCreation">Feature Creation</a></li>
 <li><a href="#mapTileAcquisition">Map Tile Acquisition</a></li>
@@ -60,31 +60,35 @@ title("Global Map with Points & Lines")
 
 --
 
-##### Eccentric Ellipsoid<a name="eccentricEllipse"></a>
+##### Image Overlay<a name="imageOverlay"></a>
 
 ```julia
-# Eccentric Ellipsoids
-# This example demonstrates how the class:cartopy.crs.Globe can be used
-# to define a highly eccentric elliptical model of a geoid. This globe
-# definition is used in defining a Geostationary projection. The projection
-# is then visualised with a Natural Earth image and coastlines, which have both
-# been reprojected on the fly.
-
 using PyPlot, PyCall
-ccrs = pyimport("cartopy.crs")
+cartopy = pyimport("cartopy")
 
-eccentric_globe = ccrs.Globe(semimajor_axis=1000, semiminor_axis=500, ellipse=nothing)
-geostationary = ccrs.Geostationary(globe=eccentric_globe)
+fig = figure(figsize=(8, 12))
 
-ax = subplot(projection=geostationary)
+fname = joinpath(cartopy.config["repo_data_dir"], "raster", "sample", "Miriam.A2012270.2050.2km.jpg")
+img_extent = (-120.67660000000001, -106.32104523100001, 13.2301484511245, 30.766899999999502)
+img = imread(fname)
 
-ax.stock_img()
-ax.coastlines()
+ax = subplot(projection=ccrs.PlateCarree())
+title("Hurricane Miriam from the Aqua/MODIS satellite\n2012 09/26/2012 20:50 UTC")
 
-title("Eccentric Ellipse")
+# set a margin around the data
+xlim(img_extent[1]-1, img_extent[2]+1)
+
+# add the image. Because this image was a tif, the "origin" of the image is in the
+# upper left corner
+imshow(img, origin="upper", extent=img_extent, transform=cartopy.crs.PlateCarree())
+ax.coastlines(resolution="50m", color="k", linewidth=1)
+
+# mark a known place to help us geo-locate ourselves
+plot(-117.1625, 32.715, "bo", markersize=7, transform=ccrs.Geodetic())
+text(-117, 33, "San Diego", transform=ccrs.Geodetic())
 ```
 
-![Eccentric Ellipse](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/02eccentricEllipseExample.png "Eccentric Ellipse")
+![Image Overlay](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/02imageOverlayExample.png "Image Overlay")
 
 --
 
