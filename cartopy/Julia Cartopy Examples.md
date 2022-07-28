@@ -1,16 +1,18 @@
 ## Julia Cartopy Examples
-Last Update: 04.20.2019 (update to Julia 1.0)<br>
+Last Update: 2022-07-28<br>
 
 ##### Contents
 
 <ul>
 <li><a href="#installation">Installation</a></li>
-<li><a href="#globalMap">Global Map with Points & Lines</a></li>
-<li><a href="#imageOverlay">Image Overlay</a></li>
-<li><a href="#wmtsEarthAtNight">WMTS (Earth at Night)</a></li>
-<li><a href="#featureCreation">Feature Creation</a></li>
-<li><a href="#vectorPlotting">Vector Plotting</a></li>
-<li><a href="#features">Features</a></li>
+<li><a href="#3Dortho">3D Earth observed from infinite distance</a></li>
+<li><a href="#3Dperspective">3D Earth observed from finite altitude</a></li>
+<li><a href="#2DWorldMap-2color">2D world map</a></li>
+<li><a href="#2DWorldMap-stockImg">2D world map with stock image</a></li>
+<li><a href="#linesPoints">Draw points, lines, & great circles</a></li>
+<li><a href="#features">Add features</a></li>
+<li><a href="#imageOverlay">Overlay images</a></li>
+<li><a href="#vectorOverlay">Overlay vectors</a></li>
 </ul>
 
 ### Cartopy
@@ -32,7 +34,92 @@ When using Python modules (of which Cartopy is an example) in Julia rather than 
 
 #### Cartopy Examples
 
-##### Global Map with Points & Lines<a name="globalMap"></a>
+##### 3D Earth observed from infinite distance<a name="3Dortho"></a>
+
+```julia
+using PyPlot, PyCall
+ccrs = pyimport("cartopy.crs")
+feature = pyimport("cartopy.feature")
+
+lat = 15 # degrees
+lon = -50 # degrees
+ax = subplot(projection=ccrs.Orthographic(lon, lat))
+
+ax.set_global() # make the map global rather than have it zoom in to the extents of any plotted data
+
+ax.add_feature(feature.OCEAN, color="navy")
+ax.add_feature(feature.LAND, color="lightgray")
+
+axis("off")
+```
+
+![3Dortho](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/output/3Dortho.png "3Dortho")
+
+--
+
+##### 3D Earth observed from finite altitude<a name="3Dperspective"></a>
+
+```julia
+using PyPlot, PyCall
+ccrs = pyimport("cartopy.crs")
+feature = pyimport("cartopy.feature")
+
+lat = 38 # degrees
+lon = 14 # degrees
+alt = 100e3 # meters
+
+ax = subplot(projection=ccrs.NearsidePerspective(central_latitude=lat, central_longitude=lon, satellite_height=alt))
+ax.set_global()
+ax.gridlines(lw=0.5, ls="--")
+
+ax.add_feature(feature.OCEAN, color="navy")
+ax.add_feature(feature.LAND, color="lightgray")
+
+axis("off")
+```
+
+![3Dperspective](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/output/3Dperspective.png "3Dperspective")
+
+--
+
+##### 2D world map<a name="2DWorldMap-2color"></a>
+
+```julia
+using PyPlot, PyCall
+ccrs = pyimport("cartopy.crs")
+feature = pyimport("cartopy.feature")
+
+ax = subplot(projection=ccrs.PlateCarree())
+ax.set_global()
+
+ax.add_feature(feature.OCEAN, color="navy")
+ax.add_feature(feature.LAND, color="lightgray")
+
+axis("off")
+```
+
+![2DWorldMap-2color](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/output/2DWorldMap-2color.png "2DWorldMap-2color")
+
+--
+
+##### 2D world map with stock image<a name="2DWorldMap-stockImg.png"></a>
+
+```julia
+using PyPlot, PyCall
+ccrs = pyimport("cartopy.crs")
+
+ax = subplot(projection=ccrs.PlateCarree())
+ax.set_global()
+ax.stock_img()
+
+axis("off")
+```
+
+![2DWorldMap-stockImg](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/output/2DWorldMap-stockImg.png "2DWorldMap-stockImg")
+
+--
+
+##### Draw points, lines, & great circles<a name="linesPoints"></a>
 
 ```julia
 using PyPlot, PyCall
@@ -40,9 +127,7 @@ ccrs = pyimport("cartopy.crs")
 
 ax = subplot(projection=ccrs.Robinson())
 
-# make the map global rather than have it zoom in to the extents of any plotted data
 ax.set_global()
-
 ax.stock_img()
 ax.coastlines()
 
@@ -56,11 +141,58 @@ plot([-58.3817, 132], [-34.6033, 43.17], transform=ccrs.Geodetic(), linewidth=3,
 title("Global Map with Points & Lines")
 ```
 
-![Global Map](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/01globalMap.png "Global Map")
+![linesPoints](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/output/linesPoints.png "linesPoints")
 
 --
 
-##### Image Overlay<a name="imageOverlay"></a>
+##### Add features<a name="features"></a>
+
+```julia
+using PyPlot, PyCall
+ccrs = pyimport("cartopy.crs")
+feature = pyimport("cartopy.feature")
+
+ax = subplot(projection=ccrs.PlateCarree())
+ax.set_extent([80, 170, -45, 30])
+
+ax.stock_img()
+
+# Create a feature for States/Admin 1 regions at 1:50m from Natural Earth
+states_provinces = feature.NaturalEarthFeature(
+        category="cultural",
+        name="admin_1_states_provinces_lines",
+        scale="50m",
+        facecolor="none"
+)
+
+ax.add_feature(feature.LAND)
+ax.add_feature(feature.COASTLINE)
+ax.add_feature(states_provinces, edgecolor="gray")
+```
+
+![features1](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/output/features1.png "features1")
+
+```julia
+using PyPlot, PyCall
+ccrs = pyimport("cartopy.crs")
+feature = pyimport("cartopy.feature")
+
+ax = subplot(projection=ccrs.PlateCarree())
+ax.set_extent([-20, 60, -40, 40])
+
+ax.add_feature(feature.LAND)
+ax.add_feature(feature.OCEAN)
+ax.add_feature(feature.COASTLINE)
+ax.add_feature(feature.BORDERS, linestyle=":")
+ax.add_feature(feature.LAKES, alpha=0.5)
+ax.add_feature(feature.RIVERS)
+```
+
+![features2](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/output/features2.png "features2")
+
+--
+
+##### Overlay images<a name="imageOverlay"></a>
 
 ```julia
 using PyPlot, PyCall
@@ -75,11 +207,9 @@ img = imread(fname)
 ax = subplot(projection=ccrs.PlateCarree())
 title("Hurricane Miriam from the Aqua/MODIS satellite\n2012 09/26/2012 20:50 UTC")
 
-# set a margin around the data
-xlim(img_extent[1]-1, img_extent[2]+1)
+xlim(img_extent[1]-1, img_extent[2]+1) # set a margin around the data
 
-# add the image. Because this image was a tif, the "origin" of the image is in the
-# upper left corner
+# add the image. Because this image was a tif, the "origin" of the image is in the upper left corner
 imshow(img, origin="upper", extent=img_extent, transform=cartopy.crs.PlateCarree())
 ax.coastlines(resolution="50m", color="k", linewidth=1)
 
@@ -88,73 +218,11 @@ plot(-117.1625, 32.715, "bo", markersize=7, transform=ccrs.Geodetic())
 text(-117, 33, "San Diego", transform=ccrs.Geodetic())
 ```
 
-![Image Overlay](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/02imageOverlayExample.png "Image Overlay")
+![imageOverlay](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/output/imageOverlay.png "imageOverlay")
 
 --
 
-##### WMTS (Earth at Night)<a name="wmtsEarthAtNight"></a>
-
-```julia
-# Interactive WMTS (Web Map Tile Service)
-# This example demonstrates the interactive pan and zoom capability
-# supported by an OGC web services Web Map Tile Service (WMTS) aware axes.
-# The example WMTS layer is a single composite of data sampled over nine days
-# in April 2012 and thirteen days in October 2012 showing the Earth at night.
-# It does not vary over time.
-# The imagery was collected by the Suomi National Polar-orbiting Partnership
-# (Suomi NPP) weather satellite operated by the United States National Oceanic
-# and Atmospheric Administration (NOAA).
-
-using PyPlot, PyCall
-ccrs = pyimport("cartopy.crs")
-
-url = "http://map1c.vis.earthdata.nasa.gov/wmts-geo/wmts.cgi"
-layer = "VIIRS_CityLights_2012"
-
-ax = subplot(projection=ccrs.PlateCarree())
-ax.add_wmts(url, layer)
-ax.set_extent([-15, 25, 35, 60])
-
-title("Europe at Night April/October 2012")
-```
-
-![Earth at Night](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/03wmtsEarthAtNight.png "Earth at Night")
-
---
-
-##### Feature Creation<a name="featureCreation"></a>
-
-```julia
-using PyPlot, PyCall
-ccrs = pyimport("cartopy.crs")
-cfeature = pyimport("cartopy.feature")
-
-ax = subplot(projection=ccrs.PlateCarree())
-ax.set_extent([80, 170, -45, 30])
-
-# Put a background image on for nice sea rendering.
-ax.stock_img()
-
-# Create a feature for States/Admin 1 regions at 1:50m from Natural Earth
-states_provinces = cfeature.NaturalEarthFeature(
-        category="cultural",
-        name="admin_1_states_provinces_lines",
-        scale="50m",
-        facecolor="none"
-)
-
-ax.add_feature(cfeature.LAND)
-ax.add_feature(cfeature.COASTLINE)
-ax.add_feature(states_provinces, edgecolor="gray")
-```
-
-![Feature Creation](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/04featureCreationExample.png "Feature Creation")
-
---
-
-##### Vector Plotting<a name="vectorPlotting"></a>
-
-Cartopy comes with powerful vector field plotting functionality. There are 3 distinct options for visualising vector fields: `quiver`, `barb`, and `streamplot` each with their own benefits for displaying certain vector field forms.
+##### Overlay vectors<a name="vectorOverlay"></a>
 
 ```julia
 using PyCall, PyPlot
@@ -178,44 +246,19 @@ function sample_data(shape=(20, 30))
 end
 
 ax = subplot(projection=ccrs.Orthographic(-10, 45))
+ax.set_global()
+ax.gridlines()
 
-# The crs will be a rotated pole CRS, meaning that the vectors 
-# will be unevenly spaced in regular PlateCarree space.
+# The crs will be a rotated pole CRS, meaning that the vectors will be unevenly spaced in regular PlateCarree space.
 crs = ccrs.RotatedPole(pole_longitude=177.5, pole_latitude=37.5)
 
 ax.add_feature(feature.OCEAN, zorder=0)
 ax.add_feature(feature.LAND, zorder=0, edgecolor="k")
 
-ax.set_global()
-ax.gridlines()
-
 x, y, u, v = sample_data()
 ax.quiver(collect(x), collect(y), u, v, transform=crs)
 ```
 
-![Vector Plotting](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/05vectorPlottingExample.png "VectorPlotting")
-
---
-
-##### Features<a name="features"></a>
-
-```julia
-using PyPlot, PyCall
-ccrs = pyimport("cartopy.crs")
-cfeat = pyimport("cartopy.feature")
-
-ax = subplot(projection=ccrs.PlateCarree())
-
-ax.add_feature(cfeat.LAND)
-ax.add_feature(cfeat.OCEAN)
-ax.add_feature(cfeat.COASTLINE)
-ax.add_feature(cfeat.BORDERS, linestyle=":")
-ax.add_feature(cfeat.LAKES, alpha=0.5)
-ax.add_feature(cfeat.RIVERS)
-
-ax.set_extent([-20, 60, -40, 40])
-```
-
-![Features](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/06featuresExample.png "Features")
+![vectorOverlay](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/output/vectorOverlay.png "vectorOverlay")
 
 --
