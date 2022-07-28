@@ -1,7 +1,7 @@
 ## Julia Cartopy Examples
 Last Update: 2022-07-28<br>
 
-##### Contents
+#### Contents
 
 <ul>
 <li><a href="#installation">Installation</a></li>
@@ -15,13 +15,11 @@ Last Update: 2022-07-28<br>
 <li><a href="#vectorOverlay">Overlay vectors</a></li>
 </ul>
 
-### Cartopy
-#### Installation<a name="installation"></a>
+#### Cartopy Installation<a name="installation"></a>
 
+1. In the Julia command line: `using Conda; Conda.add("Cartopy")`
 1. In computer's command line (Terminal on Mac, Command Prompt on Windows): `conda install -c conda-forge cartopy`
-1. In the Julia command line: `using Conda;	Conda.add("Cartopy")`
 
- 
 --
 
 #### Python → Julia PyPlot Translation<a name="translation"></a>
@@ -31,10 +29,9 @@ When using Python modules (of which Cartopy is an example) in Julia rather than 
 * Python & Julia 1.0: `ax.stock_img()`
 * Julia ≤0.7: `ax[:stock_img]()`
 
+--
 
-#### Cartopy Examples
-
-##### 3D Earth observed from infinite distance<a name="3Dortho"></a>
+#### 3D Earth observed from infinite distance<a name="3Dortho"></a>
 
 ```julia
 using PyPlot, PyCall
@@ -53,11 +50,13 @@ ax.add_feature(feature.LAND, color="lightgray")
 axis("off")
 ```
 
-![3Dortho](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/output/3Dortho.png "3Dortho")
+<p align="center">
+    <img src="https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/output/3Dortho.png" width="500" align="middle" />
+</p>
 
 --
 
-##### 3D Earth observed from finite altitude<a name="3Dperspective"></a>
+#### 3D Earth observed from finite altitude<a name="3Dperspective"></a>
 
 ```julia
 using PyPlot, PyCall
@@ -78,11 +77,13 @@ ax.add_feature(feature.LAND, color="lightgray")
 axis("off")
 ```
 
-![3Dperspective](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/output/3Dperspective.png "3Dperspective")
+<p align="center">
+    <img src="https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/output/3Dperspective.png" width="500" align="middle" />
+</p>
 
 --
 
-##### 2D world map<a name="2DWorldMap-2color"></a>
+#### 2D world map<a name="2DWorldMap-2color"></a>
 
 ```julia
 using PyPlot, PyCall
@@ -98,11 +99,13 @@ ax.add_feature(feature.LAND, color="lightgray")
 axis("off")
 ```
 
-![2DWorldMap-2color](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/output/2DWorldMap-2color.png "2DWorldMap-2color")
+<p align="center">
+    <img src="https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/output/2DWorldMap-2color.png" width="500" align="middle" />
+</p>
 
 --
 
-##### 2D world map with stock image<a name="2DWorldMap-stockImg.png"></a>
+#### 2D world map with stock image<a name="2DWorldMap-stockImg.png"></a>
 
 ```julia
 using PyPlot, PyCall
@@ -115,11 +118,13 @@ ax.stock_img()
 axis("off")
 ```
 
-![2DWorldMap-stockImg](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/output/2DWorldMap-stockImg.png "2DWorldMap-stockImg")
+<p align="center">
+    <img src="https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/output/2DWorldMap-stockImg.png" width="500" align="middle" />
+</p>
 
 --
 
-##### Draw points, lines, & great circles<a name="linesPoints"></a>
+#### Draw points, lines, & great circles<a name="linesPoints"></a>
 
 ```julia
 using PyPlot, PyCall
@@ -141,11 +146,13 @@ plot([-58.3817, 132], [-34.6033, 43.17], transform=ccrs.Geodetic(), linewidth=3,
 title("Global Map with Points & Lines")
 ```
 
-![linesPoints](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/output/linesPoints.png "linesPoints")
+<p align="center">
+    <img src="https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/output/linesPoints.png" width="500" align="middle" />
+</p>
 
 --
 
-##### Add features<a name="features"></a>
+#### Add features<a name="features"></a>
 
 ```julia
 using PyPlot, PyCall
@@ -170,7 +177,9 @@ ax.add_feature(feature.COASTLINE)
 ax.add_feature(states_provinces, edgecolor="gray")
 ```
 
-![features1](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/output/features1.png "features1")
+<p align="center">
+    <img src="https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/output/features1.png" width="500" align="middle" />
+</p>
 
 ```julia
 using PyPlot, PyCall
@@ -188,11 +197,13 @@ ax.add_feature(feature.LAKES, alpha=0.5)
 ax.add_feature(feature.RIVERS)
 ```
 
-![features2](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/output/features2.png "features2")
+<p align="center">
+    <img src="https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/output/features2.png" width="500" align="middle" />
+</p>
 
 --
 
-##### Overlay images<a name="imageOverlay"></a>
+#### Overlay images<a name="imageOverlay"></a>
 
 ```julia
 using PyPlot, PyCall
@@ -218,11 +229,13 @@ plot(-117.1625, 32.715, "bo", markersize=7, transform=ccrs.Geodetic())
 text(-117, 33, "San Diego", transform=ccrs.Geodetic())
 ```
 
-![imageOverlay](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/output/imageOverlay.png "imageOverlay")
+<p align="center">
+    <img src="https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/output/imageOverlay.png" width="500" align="middle" />
+</p>
 
 --
 
-##### Overlay vectors<a name="vectorOverlay"></a>
+#### Overlay vectors<a name="vectorOverlay"></a>
 
 ```julia
 using PyCall, PyPlot
@@ -259,6 +272,8 @@ x, y, u, v = sample_data()
 ax.quiver(collect(x), collect(y), u, v, transform=crs)
 ```
 
-![vectorOverlay](https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/output/vectorOverlay.png "vectorOverlay")
+<p align="center">
+    <img src="https://raw.githubusercontent.com/jpwspicer/Gists/master/cartopy/output/vectorOverlay.png" width="500" align="middle" />
+</p>
 
 --
